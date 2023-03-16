@@ -14,7 +14,8 @@ SELECT
     trace_address,
     error,
     status,
-    FORMAT_TIMESTAMP("%Y-%m-%dT%X%Ez", block_timestamp) AS block_timestamp,
+    formatDateTime(block_timestamp, '%Y-%m-%dT%T%z') AS block_timestamp,
     block_number
-FROM `bigquery-public-data.crypto_ethereum.traces`
-WHERE DATE(block_timestamp) >= @start_date AND DATE(block_timestamp) <= @end_date
+FROM traces_raw
+WHERE block_number >= {start_block:UInt64}  AND block_number <= {end_block:UInt64}
+LIMIT 1 BY (block_number, trace_id)

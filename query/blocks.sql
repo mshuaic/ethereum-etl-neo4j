@@ -1,5 +1,5 @@
 SELECT
-    FORMAT_TIMESTAMP("%Y-%m-%dT%X%Ez", timestamp) AS timestamp,
+    formatDateTime(timestamp, '%Y-%m-%dT%T%z') AS timestamp,
     number,
     `hash`,
     parent_hash,
@@ -17,5 +17,6 @@ SELECT
     gas_limit,
     gas_used,
     transaction_count
-FROM `bigquery-public-data.crypto_ethereum.blocks`
-WHERE DATE(timestamp) >= @start_date AND DATE(timestamp) <= @end_date
+FROM blocks_raw 
+WHERE number >= {start_block:UInt64}  AND number <= {end_block:UInt64}
+LIMIT 1 by number

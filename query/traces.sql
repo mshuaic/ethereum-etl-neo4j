@@ -18,4 +18,3 @@ SELECT
     block_number
 FROM traces_raw
 WHERE block_number >= {start_block:UInt64}  AND block_number <= {end_block:UInt64}
-LIMIT 1 BY (block_number, trace_id)

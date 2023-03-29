@@ -9,4 +9,3 @@ SELECT
     block_number
 FROM token_transfers_raw
 WHERE block_number >= {start_block:UInt64}  AND block_number <= {end_block:UInt64}
-LIMIT 1 BY (block_number, transaction_hash, log_index)

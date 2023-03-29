@@ -17,6 +17,5 @@ SELECT
     gas_limit,
     gas_used,
     transaction_count
-FROM blocks_raw 
+FROM blocks_raw
 WHERE number >= {start_block:UInt64}  AND number <= {end_block:UInt64}
-LIMIT 1 by number
